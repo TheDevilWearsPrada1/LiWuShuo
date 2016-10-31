@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Administrator on 2016/10/27 0027.
  */
 
-public class OldSearchAdapter extends BaseAdapter implements View.OnClickListener {
+public class OldSearchAdapter extends BaseAdapter{
     List<OldSearchEntity> list;
     int pos;
 
@@ -39,7 +39,7 @@ public class OldSearchAdapter extends BaseAdapter implements View.OnClickListene
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder=null;
         if (convertView==null){
             holder=new Holder();
@@ -51,13 +51,22 @@ public class OldSearchAdapter extends BaseAdapter implements View.OnClickListene
             holder= (Holder) convertView.getTag();
         }
         holder.textView.setText(list.get(position).getWord());
-        holder.textView.setOnClickListener(this);
-        holder.tvDelelte.setOnClickListener(this);
-        pos=position;
+        holder.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClicked.onItem(position);
+            }
+        });
+        holder.tvDelelte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClicked.onDelete(position);
+            }
+        });
         return convertView;
     }
 
-    @Override
+   /* @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv:
@@ -67,7 +76,7 @@ public class OldSearchAdapter extends BaseAdapter implements View.OnClickListene
                 onItemClicked.onDelete(pos);
                 break;
         }
-    }
+    }*/
     OnItemClicked onItemClicked;
 
     public void setOnItemClicked(OnItemClicked onItemClicked) {

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +95,7 @@ public class HotFragment extends MySuperFragment<HotWordPresenter> implements Ho
             @Override
             public void onItem(int position) {
                 EventBus.getDefault().post(datas.get(position).getWord());
+                Log.e("自定义控件", "onItem() called with: position = [" + position + "]");
             }
 
             @Override

@@ -4,9 +4,11 @@
     android:layout_height="wrap_content"
     android:background="#fff"
     android:orientation="horizontal">
-    <ImageView
+    <TextView
         android:layout_margin="10dp"
-        android:src="@drawable/logo_title_c"
+        android:text="欢乐购"
+        android:textSize="15dp"
+        android:textColor="#f97676"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <include layout="@layout/search"
