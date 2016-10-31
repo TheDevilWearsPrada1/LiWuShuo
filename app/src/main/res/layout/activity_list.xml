@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/ll_list"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FD0E38"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/back_list"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/abc_ic_ab_back_holo_dark"
+            android:textColor="#fff"
+            android:textSize="36sp" />
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            >
+            <TableRow android:gravity="center">
+                <android.support.design.widget.TabLayout
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/tab_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tabIndicatorColor="#fff"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabMode="scrollable"
+                    app:tabSelectedTextColor="#fff"
+                    app:tabTextColor="#fff" />
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>-->
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/icon_heart_unselected" />
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/btn1"
+            android:background="@mipmap/icon_share_up" />
+
+        <Button
+            android:id="@+id/btnshop"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="#FF2D47"
+            android:gravity="center"
+            android:text="去淘宝购买"
+            android:textColor="#fff" />
+    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_above="@id/rl"
+        android:id="@+id/viewpagers"
+        android:layout_below="@+id/ll_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

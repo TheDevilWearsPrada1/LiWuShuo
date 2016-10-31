@@ -1,0 +1,477 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta id="vp" name="viewport" content="width=device-width, user-scalable=no,maximum-scale=1.0,initial-scale=1">
+  <title>礼物说 CDN 健康检查工具</title>
+  <link rel="stylesheet" type="text/css" href="./css/cdn-diagnosis.css">
+  <script type="text/javascript">
+  var JS_VERSION = 1.0;
+  </script>
+  <script language="Javascript1.1">
+  var JS_VERSION = 1.1;
+  </script>
+  <script language="Javascript1.2">
+  var JS_VERSION = 1.2;
+  </script>
+  <script language="Javascript1.3">
+  var JS_VERSION = 1.3;
+  </script>
+  <script language="Javascript1.4">
+  var JS_VERSION = 1.4;
+  </script>
+  <script language="Javascript1.5">
+  var JS_VERSION = 1.5;
+  </script>
+  <script language="Javascript1.6">
+  var JS_VERSION = 1.6;
+  </script>
+  <script language="Javascript1.7">
+  var JS_VERSION = 1.7;
+  </script>
+  <script language="Javascript1.8">
+  var JS_VERSION = 1.8;
+  </script>
+  <script language="Javascript1.9">
+  var JS_VERSION = 1.9;
+  </script>
+
+</head>
+
+<body>
+  <div id="main" class="main">
+    <h1>礼物说 CDN 健康检查工具</h1>
+    <p class="info">此页面仅用于定位您的浏览器和网络信息，不涉及您的隐私信息，请放心使用。</p>
+    <noscript>
+      <div>
+        JavaScript 状态: 禁用。请开启后刷新重试。
+      </div>
+    </noscript>
+    <p>礼物说图片下载速度1: &nbsp;<span id="a_sp_1">0</span> KB/s
+      <br/> 礼物说图片下载速度2: &nbsp;<span id="a_sp_2">0</span> KB/s
+      <br/> 礼物说图片下载速度3: &nbsp;<span id="a_sp_3">0</span> KB/s</p>
+    <p>百度图片下载速度: &nbsp;<span id="a_sp_baidu">0</span> KB/s
+      <br/> 淘宝图片下载速度: &nbsp;<span id="a_sp_taobao">0</span> KB/s
+      <br/> 腾讯图片下载速度: &nbsp;<span id="a_sp_qq">0</span> KB/s</p>
+    <div id="ipinfo">
+      <p>客户端IP: <span id="client_ip"></span>
+        <br>DNS IP: <span id="dns_ip"></span>
+        <br>目标IP: <span id="target_ip"></span></p>
+    </div>
+    <div id="slow" style="display:none">
+      <h2 style="color:#FF6600">如下载速度不理想，请提供进一步的信息</h2>
+      <p>1. 打开命令行工具
+        <br/>* Windows 请在开始菜单点“运行...”，输入框中填入 cmd，点运行按钮即可打开命令行工具</p>
+      <p>2. 命令行工具窗口中输入: ping {访问域名} [回车]</p>
+      <p>3. 把信息截图发给礼物说的技术支持</p>
+    </div>
+    <div id="ok" style="display:none">
+      <h2 style="color:#00AA00">下载速度理想</h2></div>
+    <div id="error" style="display:none">
+      <h2 style="color:#FF6600">图片出错了</h2>
+    </div>
+    <div id="page">
+      <div id="log">
+        <h3><div style="">
+  <span style="color:#666;">基础信息：</span>
+  <span></span>
+</div></h3>
+        <div>
+          <div style="">
+            <span style="color:#666;">用户代理：</span>
+            <span><span id="user_agent"></span></span>
+          </div>
+        </div>
+        <div>
+          <div style="">
+            <span style="color:#666;">系统信息：</span>
+            <span><span id="os_info"></span></span>
+          </div>
+        </div>
+        <div>
+          <div style="">
+            <span style="color:#666;">浏览器信息：</span>
+            <span><span id="browser_info"></span></span>
+          </div>
+        </div>
+        <div>
+          <div style="">
+            <span style="color:#666;">Flash 版本号：</span>
+            <span><span id="flash_version"></span></span>
+          </div>
+        </div>
+        <div>
+          <div style="">
+            <span style="color:#666;">Cookie 状态：</span>
+            <span><span id="cookie_enable"></span></span>
+          </div>
+        </div>
+        <div>
+          <div style="">
+            <span style="color:#666;">JavaScript 状态：</span>
+            <span>开启 (版本号：<span id="JS_VERSION"><span>)</span>
+            </span>
+            </span>
+          </div>
+        </div>
+        <div>
+          <div style="">
+            <span style="color:#666;">LocalStorage 状态：</span>
+            <span><span id="local_storage"></span></span>
+          </div>
+        </div>
+        <h3><div style="">
+  <span style="color:#666;">网络信息：</span>
+  <span></span>
+</div></h3>
+        <div id="imgcdn">
+          <div>
+            <div style="">
+              <span style="color:#666;">图片 CDN：</span>
+              <span><span id="pic_cdn_info"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="lwsapi">
+          <div>
+            <div style="">
+              <span style="color:#666;">礼物说 API：</span>
+              <span><span id="lws_api"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="lwsindex">
+          <div>
+            <div style="">
+              <span style="color:#666;">礼物说首页：</span>
+              <span><span id="lws_home_page"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="assetscdn2">
+          <div>
+            <div style="">
+              <span style="color:#666;">Assets CDN：</span>
+              <span><span id="cdn_info"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="detail">
+          <div>
+            <div style="">
+              <span style="color:#666;">Detail页面：</span>
+              <span><span id="lws_detail_page"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="taobaoindex">
+          <div>
+            <div style="">
+              <span style="color:#666;">淘宝首页：</span>
+              <span><span id="taobao_home_page"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="alibabaindex">
+          <div>
+            <div style="">
+              <span style="color:#666;">阿里巴巴首页：</span>
+              <span><span id="alibaba_home_page"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="sinaindex">
+          <div>
+            <div style="">
+              <span style="color:#666;">新浪首页：</span>
+              <span><span id="zhalang_home_page"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="tencentindex">
+          <div>
+            <div style="">
+              <span style="color:#666;">腾讯首页：</span>
+              <span><span id="qq_home_page"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="ldns">
+          <div>
+            <div style="">
+              <span style="color:#666;">Local DNS：</span>
+              <span><span id="local_dns_info"></span></span>
+            </div>
+          </div>
+          <div>
+            <div style="">
+              <span style="color:#666;">目标IP：</span>
+              <span><span id="local_target_ip"></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p id="check-network-again" class="copy-btn">重新检测网络</p>
+  <a id="copy-btn" class="copy-btn" href="">复制检测信息到剪切板</a>
+  <a  id="feedback-btn"  class="copy-btn">点击反馈给礼物说客服</a>
+  <script type="text/javascript">/**
+ * file: mod.js
+ * ver: 1.0.9
+ * update: 2015/01/12
+ *
+ * https://github.com/fex-team/mod
+ */
+var require, define;
+
+(function(global) {
+    var head = document.getElementsByTagName('head')[0],
+        loadingMap = {},
+        factoryMap = {},
+        modulesMap = {},
+        scriptsMap = {},
+        resMap = {},
+        pkgMap = {};
+
+
+
+    function createScript(url, onerror) {
+        if (url in scriptsMap) return;
+        scriptsMap[url] = true;
+
+        var script = document.createElement('script');
+        if (onerror) {
+            var tid = setTimeout(onerror, require.timeout);
+
+            script.onerror = function() {
+                clearTimeout(tid);
+                onerror();
+            };
+
+            function onload() {
+                clearTimeout(tid);
+            }
+
+            if ('onload' in script) {
+                script.onload = onload;
+            }
+            else {
+                script.onreadystatechange = function() {
+                    if (this.readyState == 'loaded' || this.readyState == 'complete') {
+                        onload();
+                    }
+                }
+            }
+        }
+        script.type = 'text/javascript';
+        script.src = url;
+        head.appendChild(script);
+        return script;
+    }
+
+    function loadScript(id, callback, onerror) {
+        var queue = loadingMap[id] || (loadingMap[id] = []);
+        queue.push(callback);
+
+        //
+        // resource map query
+        //
+        var res = resMap[id] || {};
+        var pkg = res.pkg;
+        var url;
+
+        if (pkg) {
+            url = pkgMap[pkg].url;
+        } else {
+            url = res.url || id;
+        }
+
+        createScript(url, onerror && function() {
+            onerror(id);
+        });
+    }
+
+    define = function(id, factory) {
+        factoryMap[id] = factory;
+
+        var queue = loadingMap[id];
+        if (queue) {
+            for(var i = 0, n = queue.length; i < n; i++) {
+                queue[i]();
+            }
+            delete loadingMap[id];
+        }
+    };
+
+    require = function(id) {
+
+        // compatible with require([dep, dep2...]) syntax.
+        if (id && id.splice) {
+            return require.async.apply(this, arguments);
+        }
+
+        id = require.alias(id);
+
+        var mod = modulesMap[id];
+        if (mod) {
+            return mod.exports;
+        }
+
+        //
+        // init module
+        //
+        var factory = factoryMap[id];
+        if (!factory) {
+            throw '[ModJS] Cannot find module `' + id + '`';
+        }
+
+        mod = modulesMap[id] = {
+            exports: {}
+        };
+
+        //
+        // factory: function OR value
+        //
+        var ret = (typeof factory == 'function')
+                ? factory.apply(mod, [require, mod.exports, mod])
+                : factory;
+
+        if (ret) {
+            mod.exports = ret;
+        }
+        return mod.exports;
+    };
+
+    require.async = function(names, onload, onerror) {
+        if (typeof names == 'string') {
+            names = [names];
+        }
+
+        for(var i = 0, n = names.length; i < n; i++) {
+            names[i] = require.alias(names[i]);
+        }
+
+        var needMap = {};
+        var needNum = 0;
+
+        function findNeed(depArr) {
+            for(var i = 0, n = depArr.length; i < n; i++) {
+                //
+                // skip loading or loaded
+                //
+                var dep = depArr[i];
+
+                if (dep in factoryMap){
+                    // check whether loaded resource's deps is loaded or not
+                    var child = resMap[dep];
+                    if (child && 'deps' in child) {
+                        findNeed(child.deps);
+                    }
+                    continue;
+                }
+
+                if (dep in needMap) {
+                    continue;
+                }
+
+                needMap[dep] = true;
+                needNum++;
+                loadScript(dep, updateNeed, onerror);
+
+                var child = resMap[dep];
+                if (child && 'deps' in child) {
+                    findNeed(child.deps);
+                }
+            }
+        }
+
+        function updateNeed() {
+            if (0 == needNum--) {
+                var args = [];
+                for(var i = 0, n = names.length; i < n; i++) {
+                    args[i] = require(names[i]);
+                }
+
+                onload && onload.apply(global, args);
+            }
+        }
+
+        findNeed(names);
+        updateNeed();
+    };
+
+    require.resourceMap = function(obj) {
+        var k, col;
+
+        // merge `res` & `pkg` fields
+        col = obj.res;
+        for(k in col) {
+            if (col.hasOwnProperty(k)) {
+                resMap[k] = col[k];
+            }
+        }
+
+        col = obj.pkg;
+        for(k in col) {
+            if (col.hasOwnProperty(k)) {
+                pkgMap[k] = col[k];
+            }
+        }
+    };
+
+    require.loadJs = function(url) {
+        createScript(url);
+    };
+
+    require.loadCss = function(cfg) {
+        if (cfg.content) {
+            var sty = document.createElement('style');
+            sty.type = 'text/css';
+
+            if (sty.styleSheet) {       // IE
+                sty.styleSheet.cssText = cfg.content;
+            } else {
+                sty.innerHTML = cfg.content;
+            }
+            head.appendChild(sty);
+        }
+        else if (cfg.url) {
+            var link = document.createElement('link');
+            link.href = cfg.url;
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            head.appendChild(link);
+        }
+    };
+
+
+    require.alias = function(id) {return id};
+
+    require.timeout = 5000;
+
+})(this);
+</script>
+  <script type="text/javascript" src="./js/cdn-diagnosis-test-img-first.js"></script>
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/cdn-diagnosis.js"></script>
+
+  <script>
+  require("liwushuo/settings/cdn-diagnosis-test-img-first");
+  require("liwushuo/settings/cdn-diagnosis");
+  var feedback = document.querySelector("#feedback-btn");
+  var shareUrl = document.querySelector("#copy-btn");
+  var onlineServer = 'http://www.liwushuo.com' + "/settings/cdn-diagnosis.html"
+  var info = encodeURIComponent(onlineServer+location.search);
+  feedback.href = 'liwushuo:///page?type=feedback&content=' +   info;
+  shareUrl.href = 'liwushuo:///share-url?target=pasteboard&url='+info;
+  //feedback.href = 'liwushuo:///page?type=feedback&content=我的';
+  </script>
+</body>
+
+</html>
