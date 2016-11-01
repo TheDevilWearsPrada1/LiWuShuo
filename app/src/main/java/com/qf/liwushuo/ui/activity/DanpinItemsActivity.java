@@ -62,7 +62,7 @@ public class DanpinItemsActivity extends AppCompatActivity implements DanpinItem
             @Override
             public void onItemClick(int position, DanpinItemsBean.DataBean.ItemsBean data) {
                 Intent intent = new Intent(sort.getContext(),ListActivity.class);
-                intent.putExtra("id_list",data.getId());
+                intent.putExtra("id_list",data.getId()+"");
                 sort.getContext().startActivity(intent);
             }
         });
