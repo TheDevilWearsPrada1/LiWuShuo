@@ -6,6 +6,7 @@
     <color name="pink">#FFE2E2</color>
     <color name="pinks">#FF4258</color>
 
+    <color name="orange">#f27242</color>
     <color name="contents_text">#ff000000</color>
     <color name="encode_view">#ffffffff</color>
     <color name="help_button_view">#ffcccccc</color>
