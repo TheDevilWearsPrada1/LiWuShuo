@@ -11,11 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.qf.liwushuo.R;
 import com.qf.liwushuo.bean.QQLoginBean;
-import com.qf.liwushuo.ui.activity.MainActivity;
 import com.qf.liwushuo.ui.activity.SettingsActivity;
 import com.qf.liwushuo.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
@@ -27,7 +27,6 @@ import com.tencent.tauth.UiError;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.image.ImageOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,6 +65,8 @@ public class MeFragment extends Fragment {
 
     private static final int QQ_LOGIN = 245;
     private static final int QQ_USERINFO = 244;
+    @BindView(R.id.tb_name)
+    TextView tbName;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,16 +91,16 @@ public class MeFragment extends Fragment {
 
     }
 
-    @OnClick({R.id.iv_settings, R.id.iv_scan,R.id.iv_acatar})
+    @OnClick({R.id.iv_settings, R.id.iv_scan, R.id.iv_acatar})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_settings:
-                Intent intent=new Intent(getContext(), SettingsActivity.class);
+                Intent intent = new Intent(getContext(), SettingsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.iv_scan:
-                Intent intent1 =new Intent(getContext(), CaptureActivity.class);
-                startActivityForResult(intent1,100);
+                Intent intent1 = new Intent(getContext(), CaptureActivity.class);
+                startActivityForResult(intent1, 100);
                 break;
             case R.id.iv_acatar:
                 //点击登录
@@ -143,6 +144,7 @@ public class MeFragment extends Fragment {
                                     action = QQ_LOGIN;
                                     Log.e("自定义控件", "json==" + jsonObject);
                                     Picasso.with(getContext()).load(jsonObject.getString("figureurl_qq_2")).transform(new CircleTransform()).into(ivAcatar);
+                                    tbName.setText(jsonObject.getString("nickname"));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -164,15 +166,17 @@ public class MeFragment extends Fragment {
                 break;
         }
     }
+
     IUiListener mIUiListener;//定义qq登录的监听器
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode==100&&resultCode==RESULT_OK){
+        if (requestCode == 100 && resultCode == RESULT_OK) {
             //拿到扫描结果
-            String result=data.getStringExtra("result");
+            String result = data.getStringExtra("result");
             Log.e("自定义控件", result);
             //处理扫苗结果
-        }else if (requestCode == Constants.REQUEST_LOGIN) {
+        } else if (requestCode == Constants.REQUEST_LOGIN) {
             mTencent.onActivityResultData(requestCode, resultCode, data, mIUiListener);
 
         }
